@@ -60,11 +60,12 @@ prepared or if the input file is empty (i.e. has 0 length).
 void SenderX::genBlk(blkT blkBuf)
 {
 	// ********* The next line needs to be changed ***********
-	if (-1 == (bytesRd = myRead(transferringFileD, &blkBuf[0], CHUNK_SZ )))
+	if (-1 == (bytesRd = myRead(transferringFileD, &blkBuf[0], CHUNK_SZ ))) // brianna should it be &blkBuf[blkNum]??
 		ErrorPrinter("myRead(transferringFileD, &blkBuf[0], CHUNK_SZ )", __FILE__, __LINE__, errno);
-	// ********* and additional code must be written ***********
+	// ********* and additional code must be written *********** brianna should we test if length ==0? for eot??
 	else {
 		//myWrite() /brianna write to make block??
+		// brianna where do we write to make a block??
 	}
 }
 
@@ -98,6 +99,7 @@ void SenderX::sendFile()
 		// finish up the protocol, assuming the receiver behaves normally
 		// ********* fill in some code here ***********
 		
+		// brianna condition for EOT??
 		sendByte(EOT);// end of transmition twice
 		sendByte(EOT);
 
